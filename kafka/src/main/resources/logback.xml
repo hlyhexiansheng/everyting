@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+
+
+    <property name="LOG_STORE_PATH" value="/tmp/logs" />
+    <property name="LOG_LEVEL" value="INFO" />
+    <property name="LOG_SAVE_DAY" value="30" />
+    <property name="MAX_FILE_SIZE" value="1000MB" />
+    <property name="LOG_FILE_NAME_PREFIX" value="elk-" />
+    <property name="ROLLING_FILE_SUBFFIX" value=".%d{yyyy-MM-dd}-%i" />
+    <property name="LAYOUT_FORMAT" value="[%d{yyyy-MM-dd HH:mm:ss}] [%thread] %-5level %logger{40} [%L]-> [%X{trackId}] %msg%n" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LAYOUT_FORMAT}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${LOG_LEVEL}</level>
+        </filter>
+    </appender>
+
+    <appender name="InfoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_STORE_PATH}/${LOG_FILE_NAME_PREFIX}info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_STORE_PATH}/${LOG_FILE_NAME_PREFIX}info.log${ROLLING_FILE_SUBFFIX}</FileNamePattern>
+            <MaxHistory>${LOG_SAVE_DAY}</MaxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LAYOUT_FORMAT}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="InfoAppender" />
+    </root>
+
+</configuration>

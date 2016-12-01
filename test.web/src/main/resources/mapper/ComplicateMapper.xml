@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 主要学习一下复杂mapper的用法 -->
+<mapper namespace="mybatis.mapper.ComplicateMapper">
+
+    <resultMap id="orderResultMap" type="mybatis.entity.Order">
+        <result column="id" property="id"></result>
+        <result column="orderId" property="orderId"></result>
+        <result column="createDate" property="createDate"></result>
+        <result column="Price" property="price" />
+        <result column="buyerUserName" property="buyerUserName" />
+        <result column="address" property="address"/>
+    </resultMap>
+
+    <insert id="insertOrderUserEntity" parameterType="mybatis.entity.Order" >
+        INSERT INTO T_ORDER (orderId,createDate,price,buyerUserName,address)
+        VALUES (#{orderId},#{createDate},#{price},#{buyerUserName},#{address})
+    </insert>
+
+    <insert id="insertOrderUserEntityBatch" parameterType="List" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO T_ORDER (orderId,createDate,price,buyerUserName,address)
+        VALUES
+        <foreach collection="list"  item="order" index="index" separator=",">
+            (#{order.orderId},#{order.createDate},#{order.price},#{order.buyerUserName},#{order.address})
+        </foreach>
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+    </insert>
+
+    <insert id="insertOrderWithGenerateKey" parameterType="mybatis.entity.Order" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO T_ORDER (orderId,createDate,price,buyerUserName,address)
+        VALUES (#{orderId},#{createDate},#{price},#{buyerUserName},#{address})
+    </insert>
+
+    <insert id="insertOrderUserMap" parameterType="map">
+        INSERT INTO T_ORDER (orderId,createDate,price,buyerUserName,address)
+        VALUES (#{order_Id},#{create_Date},#{price},#{buyer_User_Name},#{address})
+    </insert>
+
+    <insert id="inserOrderUserList" parameterType="list">
+        INSERT INTO T_ORDER (orderId,createDate,price,buyerUserName,address)
+        VALUES (
+            <foreach collection="list" item="item" index="index" separator=",">
+                #{item}
+            </foreach>
+        )
+    </insert>
+    <insert id="inserOrderUseArray" parameterType="list">
+        INSERT INTO T_ORDER (orderId,createDate,price,buyerUserName,address)
+        VALUES
+        <foreach collection="array" open="(" close=")" separator="," index="index" item="item">
+            #{item}
+        </foreach>
+    </insert>
+    
+    
+    <select id="selectOrderWithMutiCondtion" resultMap="orderResultMap" parameterType="mybatis.entity.Order">
+        SELECT * FROM T_ORDER 
+        WHERE 1 = 1
+        <if test="id > 0">
+            AND id > #{id}
+        </if>
+        <if test="address != null">
+            AND address LIKE #{address}
+        </if>
+    </select>
+    
+    <select id="selectOrderWithFenYeUseLimit" resultMap="orderResultMap" parameterType="map">
+        SELECT * FROM T_ORDER LIMIT #{index},#{count}
+    </select>
+
+    <select id="selectOrderWithFenYeUseRowBounds" resultMap="orderResultMap">
+        SELECT * FROM T_ORDER
+    </select>
+
+    <select id="selectOrderWithFenYeUseInterceptor" resultMap="orderResultMap" parameterType="mybatis.interceptor.PageParams">
+        SELECT * FROM T_ORDER
+    </select>
+
+    <select id="selectOrderWithFenyeUseInterceptorAndVo" resultMap="orderResultMap" parameterType="mybatis.PageQueryVO">
+        SELECT * FROM T_ORDER
+        <where>
+            <if test="id != null">
+                id > #{id}
+            </if>
+            <if test="name != null">
+                AND buyerUserName LIKE #{name}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectCommonTable" resultMap="orderResultMap" parameterType="map">
+      SELECT * FROM ${tableName} WHERE id = #{id}
+    </select>
+
+    <select id="selectOrderUseWhereNode" resultMap="orderResultMap" parameterType="mybatis.entity.Order">
+        SELECT * FROM T_ORDER
+        <where>
+            <if test="id > 10">
+                id > #{id}
+            </if>
+            <if test="address != null">
+                AND address LIKE #{address}
+            </if>
+            <if test="buyerUserName != null">
+                AND buyerUserName LIKE #{buyerUserName }
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="insertOrderTestTransation" parameterType="mybatis.entity.Order">
+        INSERT INTO T_ORDER (id,orderId,createDate,price,buyerUserName,address)
+        VALUES
+        (#{id},#{orderId},#{createDate},#{price},#{buyerUserName},#{address})
+    </insert>
+
+</mapper>

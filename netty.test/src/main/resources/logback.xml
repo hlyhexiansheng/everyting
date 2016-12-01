@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+
+
+    <property name="LOG_SAVE_DAY" value="30" />
+    <property name="MAX_FILE_SIZE" value="1000MB" />
+    <property name="LOG_FILE_NAME_PREFIX" value="openPlatform-" />
+    <property name="ROLLING_FILE_SUBFFIX" value=".%d{yyyy-MM-dd}-%i" />
+    <property name="LAYOUT_FORMAT" value="[%d{yyyy-MM-dd HH:mm:ss}] [%thread] %-5level %logger{40} [%L]-> [%X{trackId}] %msg%n" />
+
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LAYOUT_FORMAT}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${LOG_LEVEL}</level>
+        </filter>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

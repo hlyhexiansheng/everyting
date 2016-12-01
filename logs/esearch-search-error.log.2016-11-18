@@ -1,0 +1,4 @@
+[ERROR][2016-11-18 23:41:02 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:13) main 2323 
+[ERROR][2016-11-18 23:44:43 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:16) main ----------error 
+[ERROR][2016-11-18 23:44:59 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:16) main ----------error 
+[ERROR][2016-11-18 23:58:27 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:16) main ----------error 

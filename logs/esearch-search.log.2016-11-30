@@ -1,0 +1,106 @@
+[INFO][2016-11-30 17:36:52 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[ERROR][2016-11-30 17:37:08 +0800] org.apache.curator.ConnectionState.checkTimeouts(ConnectionState.java:198) Connection timed out for connection string (120.0.0.1:2181) and timeout (15000) / elapsed (15345) 
+org.apache.curator.CuratorConnectionLossException: KeeperErrorCode = ConnectionLoss
+	at org.apache.curator.ConnectionState.checkTimeouts(ConnectionState.java:195)
+	at org.apache.curator.ConnectionState.getZooKeeper(ConnectionState.java:87)
+	at org.apache.curator.CuratorZookeeperClient.getZooKeeper(CuratorZookeeperClient.java:115)
+	at org.apache.curator.framework.imps.CuratorFrameworkImpl.getZooKeeper(CuratorFrameworkImpl.java:487)
+	at org.apache.curator.framework.imps.CreateBuilderImpl$11.call(CreateBuilderImpl.java:720)
+	at org.apache.curator.framework.imps.CreateBuilderImpl$11.call(CreateBuilderImpl.java:703)
+	at org.apache.curator.RetryLoop.callWithRetry(RetryLoop.java:107)
+	at org.apache.curator.framework.imps.CreateBuilderImpl.pathInForeground(CreateBuilderImpl.java:699)
+	at org.apache.curator.framework.imps.CreateBuilderImpl.protectedPathInForeground(CreateBuilderImpl.java:477)
+	at org.apache.curator.framework.imps.CreateBuilderImpl.forPath(CreateBuilderImpl.java:467)
+	at org.apache.curator.framework.imps.CreateBuilderImpl.forPath(CreateBuilderImpl.java:44)
+	at writefile.WriteFileTest.main(WriteFileTest.java:22)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
+[INFO][2016-11-30 17:37:24 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 17:37:25 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 17:37:44 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 17:37:44 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 17:38:30 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 17:38:30 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 17:39:02 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 17:39:03 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 17:42:46 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 17:42:46 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 17:43:46 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 17:43:47 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 17:45:27 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 17:45:27 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 17:46:52 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 17:46:52 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 17:47:17 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 17:47:17 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 17:47:56 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 17:47:56 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 18:10:58 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 18:10:58 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 19:11:24 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 19:11:24 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 19:26:04 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 19:26:05 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 19:28:36 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 19:28:36 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 19:43:00 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 19:43:00 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 19:48:13 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 19:48:13 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 19:52:15 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 19:52:15 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 19:53:58 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 19:53:58 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 19:57:38 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 19:57:39 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:00:54 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:00:55 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:01:40 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:01:40 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:02:48 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:02:48 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:20:07 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:20:07 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:25:37 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:25:37 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:37:24 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:37:25 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:39:00 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:39:00 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:45:28 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:45:28 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:46:48 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:46:48 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:52:12 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:52:12 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:55:23 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:55:23 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:56:49 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:56:50 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:58:44 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:58:44 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:59:33 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:59:33 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 20:59:47 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 20:59:47 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 21:01:14 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 21:01:15 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 21:03:07 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 21:03:07 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 21:04:27 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 21:04:27 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 21:05:27 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 21:05:27 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 21:07:07 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 21:07:08 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 21:08:12 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 21:08:12 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 21:15:00 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 21:15:00 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 21:23:20 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 21:23:20 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 
+[INFO][2016-11-30 21:32:28 +0800] org.apache.curator.framework.imps.CuratorFrameworkImpl.start(CuratorFrameworkImpl.java:234) Starting 
+[INFO][2016-11-30 21:32:28 +0800] org.apache.curator.framework.state.ConnectionStateManager.postState(ConnectionStateManager.java:228) State change: CONNECTED 

@@ -1,0 +1,3 @@
+[2016-03-14 21:40:56] [New I/O boss #9] [ERROR] [asynhttp.AsynHttpUitl$1] [33] - doAsynHttpGet catch exception-->http://localhost:9696/testServlet
+[2016-03-14 21:46:32] [New I/O boss #9] [ERROR] [asynhttp.AsynHttpUitl$1] [33] - doAsynHttpGet catch exception-->http://localhost:9696/testServlet
+[2016-03-14 21:47:07] [New I/O boss #9] [ERROR] [asynhttp.AsynHttpUitl$1] [33] - doAsynHttpGet catch exception-->http://localhost:9696/testServlet

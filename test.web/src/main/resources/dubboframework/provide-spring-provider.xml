@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- Application name -->
+    <!--&lt;!&ndash; expose this com.bestpay.portal.user.service through dubbo protocol, through port 20880 &ndash;&gt;-->
+    <dubbo:application name="dubbo_provider"></dubbo:application>
+
+    <dubbo:protocol name="dubbo" port="21040" threads="200"/>
+
+    <dubbo:registry id="zkRegistry" address="zookeeper://192.168.120.188:2181" client="zkclient" timeout="2000"/>
+
+    <dubbo:service interface="dubbo.service.TestService" ref="testService" version="1.0.0" />
+
+    <bean id="testService" class="dubbo.service.TestServiceImpl" />
+
+</beans>

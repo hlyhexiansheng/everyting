@@ -1,0 +1,59 @@
+package kafka;
+
+import backtype.storm.spout.SpoutOutputCollector;
+import backtype.storm.task.TopologyContext;
+import backtype.storm.topology.OutputFieldsDeclarer;
+import backtype.storm.topology.base.BaseRichSpout;
+import backtype.storm.tuple.Fields;
+import backtype.storm.tuple.Values;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Properties;
+
+/**
+ * Created by noodles on 16/11/14 下午3:21.
+ */
+public class KafkaSpout extends BaseRichSpout {
+
+    private final Properties kafkaProperties;
+
+    private SpoutOutputCollector collector;
+
+    private transient KafkaConsumer<String, String> consumer;
+
+
+    public KafkaSpout(Properties kafkaProperties) {
+        this.kafkaProperties = kafkaProperties;
+    }
+
+    private void initKafka() {
+        if (consumer == null) {
+            consumer = new KafkaConsumer<>(kafkaProperties);
+            consumer.subscribe(Arrays.asList(ConstantsDef.Topic_One, ConstantsDef.Topic_Two, ConstantsDef.Topic_Three));
+        }
+    }
+
+    @Override
+    public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
+        this.collector = collector;
+        initKafka();
+    }
+
+    @Override
+    public void nextTuple() {
+        final ConsumerRecords<String, String> records = consumer.poll(100);
+        for (ConsumerRecord<String, String> record : records) {
+            System.out.println(String.format("offset = %d, key = %s, value = %s,partition= %s, topic = %s", record.offset(), record.key(), record.value(), record.partition(), record.topic()));
+            this.collector.emit(new Values(record.value()));
+        }
+    }
+
+    @Override
+    public void declareOutputFields(OutputFieldsDeclarer declarer) {
+        declarer.declare(new Fields("kafkaword"));
+    }
+}

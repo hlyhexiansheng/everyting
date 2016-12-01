@@ -1,0 +1,9 @@
+[INFO][2016-11-19 00:02:37 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:14) ------------info$$AccountSystem 127.0.0.4 INFO log.Log4jBootStrap main 14 
+[WARN][2016-11-19 00:02:37 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:15) ------------warn$$AccountSystem 127.0.0.4 WARN log.Log4jBootStrap main 15 
+[ERROR][2016-11-19 00:02:37 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:16) ----------error$$AccountSystem 127.0.0.4 ERROR log.Log4jBootStrap main 16 
+[INFO][2016-11-19 00:06:34 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:14) ------------info$$AccountSystem 127.0.0.4 INFO log.Log4jBootStrap main 14 
+[WARN][2016-11-19 00:06:34 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:15) ------------warn$$AccountSystem 127.0.0.4 WARN log.Log4jBootStrap main 15 
+[ERROR][2016-11-19 00:06:34 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:16) ----------error$$AccountSystem 127.0.0.4 ERROR log.Log4jBootStrap main 16 
+[INFO][2016-11-19 00:09:38 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:14) ------------info$$AccountSystem 127.0.0.4 INFO log.Log4jBootStrap main 14 
+[WARN][2016-11-19 00:09:38 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:15) ------------warn$$AccountSystem 127.0.0.4 WARN log.Log4jBootStrap main 15 
+[ERROR][2016-11-19 00:09:38 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:16) ----------error$$AccountSystem 127.0.0.4 ERROR log.Log4jBootStrap main 16 

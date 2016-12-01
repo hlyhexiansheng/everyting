@@ -1,0 +1,9 @@
+[ERROR][2016-11-18 23:41:02 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:13) 2323 
+[WARN][2016-11-18 23:44:42 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:15) ------------warn 
+[ERROR][2016-11-18 23:44:43 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:16) ----------error 
+[INFO][2016-11-18 23:44:59 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:14) ------------info 
+[WARN][2016-11-18 23:44:59 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:15) ------------warn 
+[ERROR][2016-11-18 23:44:59 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:16) ----------error 
+[INFO][2016-11-18 23:58:27 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:14) ------------info 
+[WARN][2016-11-18 23:58:27 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:15) ------------warn 
+[ERROR][2016-11-18 23:58:27 +0800] log.Log4jBootStrap.main(Log4jBootStrap.java:16) ----------error 

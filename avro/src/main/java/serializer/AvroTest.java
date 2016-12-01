@@ -24,7 +24,7 @@ public class AvroTest {
 
         final byte[] bytes = writeEvent();
 
-        String s = new String();
+        String s = new String("f");
         AvroSerializer.deSerializer(s.getBytes());
 
         final AvroFlumeEvent avroFlumeEvent = readEvent(bytes);

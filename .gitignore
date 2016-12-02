@@ -29,6 +29,6 @@
 
 # JVM crash logs
 hs_err_pid*.log
-*/*.log
+*.log
 
 dependency-reduced-pom.xml

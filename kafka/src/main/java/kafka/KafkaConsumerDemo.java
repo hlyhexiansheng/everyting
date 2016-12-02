@@ -33,21 +33,16 @@ public class KafkaConsumerDemo {
 
         private void autoConsumer() {
             KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(this.properties);
-            consumer.subscribe(Arrays.asList("SearchSystem"));
+            consumer.subscribe(Arrays.asList("Ejob"));
             while (true) {
                 ConsumerRecords<String, byte[]> records = consumer.poll(100);
                 for (ConsumerRecord<String, byte[]> record : records){
-                    System.out.println(record.offset());
-                    System.out.println(record.key());
-
 
                     final AvroFlumeEvent avroFlumeEvent = AvroSerializer.deSerializer(record.value());
 
-                    System.out.println(avroFlumeEvent.getHeaders());
-                    System.out.println(new String(avroFlumeEvent.getBody().array()));
+                    System.out.println("{" + avroFlumeEvent.getHeaders() + new String(avroFlumeEvent.getBody().array()) + "}");
 
-                    System.out.println(record.partition());
-                    System.out.println(record.topic());
+
                 }
             }
 

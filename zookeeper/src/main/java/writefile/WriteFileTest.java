@@ -20,35 +20,29 @@ public class WriteFileTest {
         client.start();
 
 //        收集
-//        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/collect/collector",getFlumeConfigBytes());
-//        client.setData().forPath("/flume/collect/collector",getFlumeConfigBytes());
+//        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/collect/collector",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/Ejob-Agent.conf"));
+//        client.setData().forPath("/flume/collect/collector",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/Ejob-Agent.conf"));
 
 
 //        搜索
-//        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/agent/SearchSystem",getFlumeConfigBytes());
-//        client.setData().forPath("/flume/agent/SearchSystem",getFlumeConfigBytes());
+//        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/agent/SearchSystem",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/Ejob-Agent.conf"));
+//        client.setData().forPath("/flume/agent/SearchSystem",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/Ejob-Agent.conf"));
 
 //        ejob
-//        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/agent/Ejob",getFlumeConfigBytes());
-        client.setData().forPath("/flume/agent/Ejob",getFlumeConfigBytes());
+//        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/agent/Ejob",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/Ejob-Agent.conf""));
+//        client.setData().forPath("/flume/agent/Ejob",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/Ejob-Agent.conf"));
 
 
 //        DEBUG
-//        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/agent/Debug",getFlumeConfigBytes());
-//        client.setData().forPath("/flume/agent/Debug",getFlumeConfigBytes());
+//        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/agent/Debug",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/Ejob-Agent.conf"));
+//        client.setData().forPath("/flume/agent/Debug",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/Ejob-Agent.conf"));
 
 
     }
 
-    private static byte[] getFlumeConfigBytes() throws IOException {
+    private static byte[] getFlumeConfigBytes(String confPath) throws IOException {
 
-//        File file = new File("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/collector.conf");
-
-//        File file = new File("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/SearchSystem-Agent.conf");
-
-        File file = new File("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/Ejob-Agent.conf");
-
-//        File file = new File("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/Debug-Agent.conf");
+        File file = new File(confPath);
 
         FileInputStream inputStream = new FileInputStream(file);
         byte[] bytes = new byte[10000];

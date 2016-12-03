@@ -33,7 +33,7 @@ public class KafkaConsumerDemo {
 
         private void autoConsumer() {
             KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(this.properties);
-            consumer.subscribe(Arrays.asList("Ejob"));
+            consumer.subscribe(Arrays.asList("Ejob","flumeMonitor"));
             while (true) {
                 ConsumerRecords<String, byte[]> records = consumer.poll(100);
                 for (ConsumerRecord<String, byte[]> record : records){

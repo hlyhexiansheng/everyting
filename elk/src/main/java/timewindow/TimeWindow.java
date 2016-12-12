@@ -14,12 +14,7 @@ public class TimeWindow {
 
     private long endTime;
 
-    private PriorityQueue<ElogMessage> priorityQueue = new PriorityQueue<>((Comparator<ElogMessage>) (o1, o2) -> {
-        if(o1.getCreateTime() > o2.getCreateTime()){
-            return 1;
-        }
-        return -1;
-    });
+    private PriorityQueue<ElogMessage> priorityQueue;
 
 
     public TimeWindow(MetricsInfo metricsInfo){

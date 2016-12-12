@@ -1,10 +1,8 @@
 package kafka;
 
-import org.apache.flume.source.avro.AvroFlumeEvent;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import serializer.AvroSerializer;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.Properties;
 /**
  * Created by noodles on 16/9/30 上午11:56.
  */
-public class KafkaConsumerDemo {
+public class KafkaConsumerDemo2 {
 
 
     private static Properties props;
@@ -33,18 +31,11 @@ public class KafkaConsumerDemo {
 
         private void autoConsumer() {
             KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(this.properties);
-            consumer.subscribe(Arrays.asList("nginx","flumeMonitor"));
+            consumer.subscribe(Arrays.asList("test"));
             while (true) {
                 ConsumerRecords<String, byte[]> records = consumer.poll(100);
                 for (ConsumerRecord<String, byte[]> record : records){
-
-                    System.out.println(record.value());;
-
-//                    final AvroFlumeEvent avroFlumeEvent = AvroSerializer.deSerializer(record.value());
-
-//                    System.out.println("{" + avroFlumeEvent.getHeaders() + new String(avroFlumeEvent.getBody().array()) + "}");
-
-
+                    System.out.println(new String(record.value()));
                 }
             }
 
@@ -54,16 +45,12 @@ public class KafkaConsumerDemo {
     public static void main(String[] args) {
 
 
-//        final Properties props1 = initProps("test1");
         final Properties props2 = initProps("test2");
 
-//        KafkaRunner kafkaRunner1 = new KafkaRunner(props1);
         KafkaRunner kafkaRunner2 = new KafkaRunner(props2);
 
-//        kafkaRunner1.setName("thread-test1");
         kafkaRunner2.setName("thread-test2");
 
-//        kafkaRunner1.start();
         kafkaRunner2.start();
 
     }
@@ -76,7 +63,7 @@ public class KafkaConsumerDemo {
         props.put("auto.commit.interval.ms", "1000");
         props.put("session.timeout.ms", "30000");
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        props.put("value.deserializer", "org.apache.kafka.common.serialization.ByteArrayDeserializer");////
+        props.put("value.deserializer", "org.apache.kafka.common.serialization.ByteArrayDeserializer");
         props.put("auto.offset.reset","earliest");
         return props;
     }

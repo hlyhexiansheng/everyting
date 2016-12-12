@@ -169,4 +169,34 @@ public class HttpUtil {
 		return resp;
 	}
 
+	public static String doPostPlainText(String url, int timeout, String postData) {
+		HttpParams httpParameters = new BasicHttpParams();
+		HttpConnectionParams.setConnectionTimeout(httpParameters, CONN_TIME_OUT);
+		HttpConnectionParams.setSoTimeout(httpParameters, timeout);
+
+		// 构造HttpClient的实例
+		HttpClient httpClient = new DefaultHttpClient(httpParameters);
+		HttpPost httpPost = new HttpPost(url);
+		httpPost.addHeader(HTTP.CONTENT_TYPE, "application/x-www-form-urlencoded;charset=utf-8");
+
+
+		httpPost.setEntity(new StringEntity(postData, Consts.UTF_8));
+
+		long start = System.currentTimeMillis();
+
+		String resp = null;
+		try {
+			HttpResponse httpResponse = httpClient.execute(httpPost);
+			System.out.println(httpResponse.getStatusLine().getStatusCode());
+			if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				resp = EntityUtils.toString(httpResponse.getEntity());
+			}
+		} catch (Exception e) {
+			log.warn("call url error,{},{}", url,e);
+		}
+
+		log.info("PostJson URL[{}] params[{}]with result[{}]. time:[{}]", url,postData,resp,System.currentTimeMillis() - start);
+		return resp;
+	}
+
 }

@@ -1,5 +1,9 @@
 package lambda;
 
+import com.alibaba.fastjson.JSON;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -8,10 +12,15 @@ import java.util.Scanner;
 public class Test {
 
     public static void main(String[] args) throws InterruptedException {
-        final long l = System.currentTimeMillis();
 
-        Thread.sleep(2000);
+        Map map = new HashMap();
+        map.put("key1","val1");
 
-        System.out.println(System.currentTimeMillis() - l);
+        final String s = JSON.toJSONString(map);
+
+        final Map map1 = JSON.parseObject(s, Map.class);
+
+        System.out.println(map1);
+
     }
 }

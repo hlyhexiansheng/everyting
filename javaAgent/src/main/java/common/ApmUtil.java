@@ -16,14 +16,13 @@ public class ApmUtil {
 
     public static void writeClass2File(CtClass ctClass){
         try {
-            File file = new File(ConfigReader.instance.getStringValue("apmTempClassStorePath","/tmp/") + ctClass.getName() + ".class");
+            File file = new File("/Users/noodles/Desktop/" + ctClass.getName() + ".class");
             FileOutputStream outputStream = new FileOutputStream(file);
             outputStream.write(ctClass.toBytecode());
             outputStream.flush();
             outputStream.close();
         }catch (Exception e){
-
+            e.printStackTrace();
         }
-
     }
 }

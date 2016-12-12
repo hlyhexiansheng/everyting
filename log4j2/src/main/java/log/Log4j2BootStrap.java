@@ -11,8 +11,9 @@ public class Log4j2BootStrap {
     private static final Logger LOGGER = LogManager.getLogger(Log4j2BootStrap.class);
 
     public static void main(String[] args) {
-        LOGGER.info("----------info");
+        LOGGER.info("----------info",new RuntimeException("fffddddd"));
         LOGGER.warn("----------warn");
         LOGGER.error("----------error");
+        LOGGER.error("");
     }
 }

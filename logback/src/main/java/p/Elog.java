@@ -57,7 +57,8 @@ public class Elog {
 
 
     private String gennerateLogTitle(String[] args){
-        return String.join(" ",args);
+//        return String.join(" ",args);
+        return null;
     }
 
 

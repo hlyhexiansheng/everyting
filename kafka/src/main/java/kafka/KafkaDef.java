@@ -5,8 +5,8 @@ package kafka;
  */
 public class KafkaDef {
 
-//    public static final String Kafka_url = "192.168.56.103:9092";
-    public static final String Kafka_url = "10.4.4.28:9092,10.4.4.29:9092,10.4.4.30:9092";
+    //    public static final String Kafka_url = "192.168.56.103:9092";
+    public static final String Kafka_url = "10.40.6.151:9092,10.40.6.152:9092,10.40.6.153:9092";
 
     public static final String Topic_One = "topic_one";
 

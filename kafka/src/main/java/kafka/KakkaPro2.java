@@ -1,13 +1,15 @@
 package kafka;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
-import serializer.AvroSerializer;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -16,11 +18,9 @@ import java.util.concurrent.Future;
 /**
  * Created by noodles on 16/9/30 上午9:59.
  */
-public class KakkaPro {
+public class KakkaPro2 {
 
     private static Properties props;
-
-    private static String[] TOPICS = new String[]{KafkaDef.Topic_One,KafkaDef.Topic_Two,KafkaDef.Topic_Three};
 
     public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
 
@@ -40,14 +40,14 @@ public class KakkaPro {
             if(StringUtils.isEmpty(val)){
                 continue;
             }
-//            String topicName = TOPICS[val.hashCode() % TOPICS.length];
-            final byte[] bytes = AvroSerializer.writeEvent(val);
+            Map map = new HashMap();
+            map.put("key",val);
+            final String s = JSON.toJSONString(map);
 
-            final ProducerRecord<String, byte[]> record = new ProducerRecord<>("nginx", "eventkey", bytes);
+            final ProducerRecord<String, byte[]> record = new ProducerRecord<>("test", "eventkey", s.getBytes());
 
             final Future<RecordMetadata> future = producer.send(record);
 
-//            final Future<RecordMetadata> future = producer.send(new ProducerRecord<>("SearchSystem",val));
             final RecordMetadata metadata = future.get();
 
             System.out.println(String.format("offset=%s,partition=%s,topic=%s",metadata.offset(),metadata.partition(),metadata.topic()));
@@ -67,20 +67,5 @@ public class KakkaPro {
         props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
     }
 
-    /**
-     * 自动插入
-     * @throws InterruptedException
-     * @throws ExecutionException
-     */
-    private static void autoPushMessage() throws InterruptedException, ExecutionException {
-
-        Producer<String, String> producer = new KafkaProducer<>(props);
-        for(int i = 0; i < 100; i++){
-            final Future<RecordMetadata> future = producer.send(new ProducerRecord<>("test", Integer.toString(i), Integer.toString(i)));
-            final RecordMetadata recordMetadata = future.get();
-            System.out.println(recordMetadata);
-        }
-        producer.close();
-    }
 
 }

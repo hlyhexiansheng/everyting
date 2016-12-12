@@ -43,6 +43,7 @@ public class KafkaSpout extends BaseRichSpout {
         initKafka();
     }
 
+
     @Override
     public void nextTuple() {
         final ConsumerRecords<String, String> records = consumer.poll(100);

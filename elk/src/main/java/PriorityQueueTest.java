@@ -9,37 +9,37 @@ import java.util.PriorityQueue;
 public class PriorityQueueTest {
 
     public static void main(String[] args) {
-        PriorityQueue<Entity> priorityQueue = new PriorityQueue<>(new Comparator<Entity>() {
-            @Override
-            public int compare(Entity o1, Entity o2) {
-                if(o1.getCreateTime() > o2.getCreateTime()){
-                    return 1;
-                }
-                return -1;
-            }
-        });
-
-
-        priorityQueue.add(new Entity(1));
-
-        priorityQueue.add(new Entity(3));
-
-        priorityQueue.add(new Entity(5));
-
-        priorityQueue.add(new Entity(7));
-        priorityQueue.add(new Entity(2));
-        priorityQueue.add(new Entity(6));
-        priorityQueue.add(new Entity(4));
-
-        while (true){
-            final Entity peek = priorityQueue.peek();
-            System.out.println(peek);
-            final Entity poll = priorityQueue.poll();
-            if(poll == null){
-                break;
-            }
-            System.out.println(poll);
-        }
+//        PriorityQueue<Entity> priorityQueue = new PriorityQueue<>(new Comparator<Entity>() {
+//            @Override
+//            public int compare(Entity o1, Entity o2) {
+//                if(o1.getCreateTime() > o2.getCreateTime()){
+//                    return 1;
+//                }
+//                return -1;
+//            }
+//        });
+//
+//
+//        priorityQueue.add(new Entity(1));
+//
+//        priorityQueue.add(new Entity(3));
+//
+//        priorityQueue.add(new Entity(5));
+//
+//        priorityQueue.add(new Entity(7));
+//        priorityQueue.add(new Entity(2));
+//        priorityQueue.add(new Entity(6));
+//        priorityQueue.add(new Entity(4));
+//
+//        while (true){
+//            final Entity peek = priorityQueue.peek();
+//            System.out.println(peek);
+//            final Entity poll = priorityQueue.poll();
+//            if(poll == null){
+//                break;
+//            }
+//            System.out.println(poll);
+//        }
 
     }
 }

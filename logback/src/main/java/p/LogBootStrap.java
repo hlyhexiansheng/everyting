@@ -8,12 +8,13 @@ import service.OrderService;
 /**
  * Created by noodles on 16/11/15 下午4:29.
  */
-public class LogBootStrap {//86097  //116488
+public class LogBootStrap {
 
     private static final Logger logger = LoggerFactory.getLogger(LogBootStrap.class);
 
-    //-javaagent:/Users/noodles/Documents/bppe-2.0/workspace/test/javaAgent/target/javaAgent-1.0-SNAPSHOT-jar-with-dependencies.jar
     public static void main(String[] args) throws InterruptedException {
+
+
 
 
         final long l = System.currentTimeMillis();

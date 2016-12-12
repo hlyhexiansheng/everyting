@@ -27,6 +27,8 @@
         <module>flume</module>
         <module>avro</module>
         <module>jmx</module>
+        <module>javassist</module>
+        <module>generateweblog</module>
     </modules>
 
     <properties>

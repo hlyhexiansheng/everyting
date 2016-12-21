@@ -1,4 +1,4 @@
-package demo1;
+package ticktest;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
@@ -64,8 +64,14 @@ public class LearningStormTopology {
     }
 
     public static void setBuilder(TopologyBuilder builder, Map conf) {
-        builder.setSpout("console", new ConsoleSpout(randomNumber), 1);
-        builder.setBolt("LearningStormBolt", new LearningStormBolt(), 10).fieldsGrouping("console",new Fields("site"));
+
+        builder.setSpout("ConsoleSpout", new ConsoleSpout(randomNumber), 1);
+
+        builder.setBolt("LearningStormBolt", new LearningStormBolt(), 1).fieldsGrouping("ConsoleSpout",new Fields("site"));
+
+        builder.setBolt("LearningStormBolt2",new LearningStormBolt2(),1).fieldsGrouping("LearningStormBolt",new Fields("word"));
+
+        builder.setBolt("LearningStormBolt3",new LearningStormBolt3(),1).fieldsGrouping("ConsoleSpout",new Fields("site"));
     }
 
 

@@ -13,14 +13,10 @@ public class Test {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Map map = new HashMap();
+        HashMap<CharSequence,CharSequence> map = new HashMap();
         map.put("key1","val1");
 
-        final String s = JSON.toJSONString(map);
-
-        final Map map1 = JSON.parseObject(s, Map.class);
-
-        System.out.println(map1);
+        final CharSequence sequence = map.get("key1");
 
     }
 }

@@ -1,6 +1,5 @@
 package kafka;
 
-import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -8,8 +7,6 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -32,30 +29,28 @@ public class KakkaPro2 {
 
     private static void pushMessage() throws ExecutionException, InterruptedException, IOException {
 
-        Producer<String, byte[]> producer = new KafkaProducer<>(props);
+        Producer<String, String> producer = new KafkaProducer<>(props);
 
-        for(;;){
+        for (; ; ) {
             Scanner scanner = new Scanner(System.in);
             final String val = scanner.nextLine();
-            if(StringUtils.isEmpty(val)){
+            if (StringUtils.isEmpty(val)) {
                 continue;
             }
-            Map map = new HashMap();
-            map.put("key",val);
-            final String s = JSON.toJSONString(map);
+            final String[] split = val.split(",");
 
-            final ProducerRecord<String, byte[]> record = new ProducerRecord<>("test", "eventkey", s.getBytes());
+            final ProducerRecord<String, String> record = new ProducerRecord<>(split[0], "eventkey", split[1]);
 
             final Future<RecordMetadata> future = producer.send(record);
 
             final RecordMetadata metadata = future.get();
 
-            System.out.println(String.format("offset=%s,partition=%s,topic=%s",metadata.offset(),metadata.partition(),metadata.topic()));
+            System.out.println(String.format("offset=%s,partition=%s,topic=%s", metadata.offset(), metadata.partition(), metadata.topic()));
         }
     }
 
 
-    private static void initProperty(){
+    private static void initProperty() {
         props = new Properties();
         props.put("bootstrap.servers", KafkaDef.Kafka_url);
         props.put("acks", "all");
@@ -64,7 +59,7 @@ public class KakkaPro2 {
         props.put("linger.ms", 1);
         props.put("buffer.memory", 33554432);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
+        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
     }
 
 

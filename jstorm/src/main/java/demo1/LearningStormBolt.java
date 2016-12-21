@@ -6,6 +6,7 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,6 +17,7 @@ import java.util.Random;
 /**
  * Created by noodles on 16/11/3 上午11:01.
  */
+@Slf4j
 public class LearningStormBolt extends BaseBasicBolt {
 
     private static final long serialVersionUID = 1L;
@@ -33,6 +35,7 @@ public class LearningStormBolt extends BaseBasicBolt {
 
     private void write2File(String s) {
 
+        log.info("got message " + s);
         try {
             if(fileWriter == null){
                 fileWriter = new FileWriter("/tmp/ss_" + String.valueOf(new Random().nextInt(100)));

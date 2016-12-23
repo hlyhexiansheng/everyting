@@ -1,0 +1,64 @@
+${agentName}.sources = r1 monitorSource
+${agentName}.sinks = k1 k2 ConsoleDebugSink
+${agentName}.channels = c1
+
+#---------------source ---start
+${agentName}.sources.r1.type = org.apache.flume.source.taildir.TaildirSource
+${agentName}.sources.r1.positionFile = ${logPath}/taildir_position
+${agentName}.sources.r1.filegroups = f1
+${agentName}.sources.r1.filegroups.f1 = ${logPath}/.*log.*
+${agentName}.sources.r1.batchSize = 4
+${agentName}.sources.r1.backoffSleepIncrement = 1000
+${agentName}.sources.r1.maxBackoffSleep = 5000
+
+${agentName}.sources.monitorSource.type = source.MonitorReportSource
+${agentName}.sources.monitorSource.reportInterval = 15
+${agentName}.sources.monitorSource.topic = flumeMonitor
+${agentName}.sources.monitorSource.module = flumeMonitor
+#---------------source ---end
+
+#---------------interceptors ---start
+${agentName}.sources.r1.interceptors = i1 i2
+${agentName}.sources.r1.interceptors.i1.type = static
+${agentName}.sources.r1.interceptors.i1.key = module
+${agentName}.sources.r1.interceptors.i1.value = ${agentName}
+${agentName}.sources.r1.interceptors.i2.type = static
+${agentName}.sources.r1.interceptors.i2.key = topic
+${agentName}.sources.r1.interceptors.i2.value = ${agentName}
+#---------------interceptors ---end
+
+
+#---------------loadBalance --start
+${agentName}.sinkgroups = g1
+${agentName}.sinkgroups.g1.sinks = k1 k2
+${agentName}.sinkgroups.g1.processor.type = load_balance
+${agentName}.sinkgroups.g1.processor.priority.k1 = 7
+${agentName}.sinkgroups.g1.processor.priority.k2 = 7
+#---------------loadBalance --end
+
+#----------------sink---start
+${agentName}.sinks.k1.type = avro
+${agentName}.sinks.k1.hostname = 10.40.6.141
+${agentName}.sinks.k1.port = 4141
+
+${agentName}.sinks.k2.type = avro
+${agentName}.sinks.k2.hostname = 10.40.6.147
+${agentName}.sinks.k2.port = 4141
+
+
+${agentName}.sinks.ConsoleDebugSink.type = sink.ConsoleDebugSink
+#----------------sink---end
+
+
+#---------------channel--------start
+${agentName}.channels.c1.type = memory
+${agentName}.channels.c1.capacity = 10000
+${agentName}.channels.c1.transactionCapacity = 100
+#---------------channel--------end
+
+
+${agentName}.sources.r1.channels = c1
+${agentName}.sources.monitorSource.channels = c1
+${agentName}.sinks.k1.channel = c1
+${agentName}.sinks.k2.channel = c1
+${agentName}.sinks.ConsoleDebugSink.channel = c1

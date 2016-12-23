@@ -21,11 +21,11 @@ public class WriteFileTest {
 
 //        收集
 //        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/collect/collector",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/collector.conf"));
-//        client.setData().forPath("/flume/collect/collector",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/collector.conf"));
+        client.setData().forPath("/flume/collect/collector",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/collector.conf"));
 
 
 //        搜索
-        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/agent/SearchSystem",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/SearchSystem-Agent.conf"));
+//        client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/flume/agent/SearchSystem",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/SearchSystem-Agent.conf"));
 //        client.setData().forPath("/flume/agent/SearchSystem",getFlumeConfigBytes("/Users/noodles/Documents/bppe-2.0/workspace/test/zookeeper/src/main/resources/SearchSystem-Agent.conf"));
 
 //        ejob

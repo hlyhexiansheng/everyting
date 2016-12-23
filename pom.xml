@@ -29,6 +29,7 @@
         <module>jmx</module>
         <module>javassist</module>
         <module>generateweblog</module>
+        <module>jprofiler</module>
     </modules>
 
     <properties>

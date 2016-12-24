@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -26,12 +27,20 @@ public class LogServlet extends HttpServlet{
     @Override
     public void init() throws ServletException {
 
+        final InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties");
+
+        ConfigReader.instance.loadConfig(resourceAsStream);
+
+        int speed = ConfigReader.instance.getIntValue("speed",100);
+
         ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             public void run() {
                 logger.error("error log [{}]" ,logId++);
+                logger.error("error log [{}]" ,logId++);
+                logger.error("error log [{}]" ,logId++);
             }
-        },1,10, TimeUnit.MILLISECONDS);
+        },1,speed, TimeUnit.MILLISECONDS);
 
         super.init();
     }

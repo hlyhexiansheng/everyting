@@ -16,10 +16,12 @@ public class Test {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Pattern p = Pattern.compile("^[0-9a-zA-Z_-]{1,}$");// 正则表达式匹配手机号
-        Matcher m = p.matcher("_-11232fdsA");
-        final boolean matches = m.matches();
-        System.out.println(matches);
+        final long startTime = System.currentTimeMillis();
+
+        Thread.sleep(3000);
+
+        System.out.println(System.currentTimeMillis() - startTime);
+
     }
 
 }

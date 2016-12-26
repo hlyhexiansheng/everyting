@@ -37,8 +37,6 @@ public class LogServlet extends HttpServlet{
         scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             public void run() {
                 logger.error("error log [{}]" ,logId++);
-                logger.error("error log [{}]" ,logId++);
-                logger.error("error log [{}]" ,logId++);
             }
         },1,speed, TimeUnit.MILLISECONDS);
 

@@ -11,8 +11,8 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <url-pattern>/hello</url-pattern>
         <servlet-name>hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
     </servlet-mapping>
 
 </web-app>

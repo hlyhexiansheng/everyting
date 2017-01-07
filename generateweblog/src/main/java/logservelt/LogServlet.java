@@ -46,22 +46,12 @@ public class LogServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        final ServletInputStream inputStream = req.getInputStream();
-
-        byte[] bytes = new byte[10000];
-        final int read = inputStream.read(bytes);
-
-        byte[] newbyte = new byte[read];
-        for(int i = 0; i < read;i++){
-            newbyte[i] = bytes[i];
-        }
-
-
-        System.out.println(new String(newbyte));
-
-
-        super.doPost(req, resp);
+        logger.info("eeeeee");
+        resp.getWriter().write("hello,fuck");
     }
 
-
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doPost(req,resp);
+    }
 }

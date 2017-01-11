@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -36,7 +38,7 @@ public class LogServlet extends HttpServlet{
         ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             public void run() {
-                logger.error("error log [{}]" ,logId++);
+//                logger.error("error log [{}]" ,logId++);
             }
         },1,speed, TimeUnit.MILLISECONDS);
 
@@ -45,6 +47,13 @@ public class LogServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+//        final Map parameterMap = req.getParameterMap();
+//        final Set set = parameterMap.keySet();
+//
+//        for(Object o : set){
+//            logger.info("key=" + o.toString() + ",value=" + parameterMap.get(o).toString());
+//        }
 
         logger.info("eeeeee");
         resp.getWriter().write("hello,fuck");

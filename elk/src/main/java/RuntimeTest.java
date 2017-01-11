@@ -16,6 +16,8 @@ public class RuntimeTest {
 
         System.out.println(new Random().nextInt(100));
 
+
+
         while (true){
             doCollectCPU();
             doCollectMem();

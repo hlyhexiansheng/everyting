@@ -1,0 +1,43 @@
+collector.sources = r1 monitorSource
+collector.sinks = k1
+collector.channels = c1
+
+#source ---start
+collector.sources.r1.type = avro
+collector.sources.r1.bind = 0.0.0.0
+collector.sources.r1.port = 4141
+
+collector.sources.monitorSource.type = source.MonitorReportSource
+collector.sources.monitorSource.topic = flumeMonitor
+collector.sources.monitorSource.module = collector
+#source ---end #
+
+-----interceptors
+collector.sources.r1.interceptors = i1
+collector.sources.r1.interceptors.i1.type = interceptor.LoggerInterceptor$Builder
+collector.sources.r1.interceptors.i1.available=true
+#-----interceptors
+
+#sink ---start
+collector.sinks.k1.type = org.apache.flume.sink.kafka.KafkaSink
+collector.sinks.k1.topic = test
+collector.sinks.k1.brokerList = 10.40.6.151:9092,10.40.6.152:9092,10.40.6.153:9092
+collector.sinks.k1.bootstrap.servers = 10.40.6.151:9092,10.40.6.152:9092,10.40.6.153:9092
+collector.sinks.k1.requiredAcks = 1
+collector.sinks.k1.batchSize = 20
+collector.sinks.k1.useFlumeEventFormat = true
+#sink ---end
+
+
+collector.channels.c1.type = SPILLABLEMEMORY
+collector.channels.c1.memoryCapacity = 100000
+collector.channels.c1.overflowCapacity = 10000000
+collector.channels.c1.byteCapacity = 800000
+collector.channels.c1.checkpointDir = ./flumeTempData/checkpoint
+collector.channels.c1.dataDirs = ./flumeTempData/data
+
+
+collector.sources.r1.channels = c1
+
+collector.sources.monitorSource.channels = c1
+collector.sinks.k1.channel = c1

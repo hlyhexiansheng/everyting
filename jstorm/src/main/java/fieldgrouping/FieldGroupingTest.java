@@ -57,7 +57,7 @@ public class FieldGroupingTest {
     public static void setBuilder(TopologyBuilder builder, Map conf) {
         builder.setSpout("spout", new Spout(props), 1);
 
-        builder.setBolt("countBolt", new CountBolt(), 10)
+        builder.setBolt("countBolt", new CountBolt(), 1)
                 .fieldsGrouping("spout", Utils.DEFAULT_STREAM_ID, new Fields("tag"));
 
     }

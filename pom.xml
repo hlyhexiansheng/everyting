@@ -30,6 +30,7 @@
         <module>javassist</module>
         <module>generateweblog</module>
         <module>jprofiler</module>
+        <module>rrdtool</module>
     </modules>
 
     <properties>

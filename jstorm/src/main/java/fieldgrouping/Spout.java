@@ -49,12 +49,12 @@ public class Spout extends BaseRichSpout {
         final ConsumerRecords<String, String> records = consumer.poll(100);
         for (ConsumerRecord<String, String> record : records) {
 //            System.out.println(String.format("offset = %d, key = %s, value = %s,partition= %s, topic = %s", record.offset(), record.key(), record.value(), record.partition(), record.topic()));
-            this.collector.emit(new Values(record.value()));
+            this.collector.emit(new Values(record.value(),"msg"+record.value()));
         }
     }
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("tag"));
+        declarer.declare(new Fields("tag","msg"));
     }
 }

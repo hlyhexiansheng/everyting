@@ -1,4 +1,4 @@
-package fieldgrouping;
+package directGrouping;
 
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;
@@ -48,13 +48,15 @@ public class Spout extends BaseRichSpout {
     public void nextTuple() {
         final ConsumerRecords<String, String> records = consumer.poll(100);
         for (ConsumerRecord<String, String> record : records) {
-//            System.out.println(String.format("offset = %d, key = %s, value = %s,partition= %s, topic = %s", record.offset(), record.key(), record.value(), record.partition(), record.topic()));
-            this.collector.emit(new Values(record.value(),"msg:"+record.value()));
+            this.collector.emit(new Values(record.value(), "msg" + record.value()));
+            this.collector.emit("monitorStream",new Values("1"));
         }
     }
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("tag","msg"));
+        declarer.declare(new Fields("tag", "msg"));
+        declarer.declareStream("monitorStream",new Fields("monitorMsg"));
+
     }
 }

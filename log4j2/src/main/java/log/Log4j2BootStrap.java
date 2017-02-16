@@ -11,12 +11,10 @@ public class Log4j2BootStrap {
     private static final Logger LOGGER = LogManager.getLogger(Log4j2BootStrap.class);
 
     public static void main(String[] args) throws InterruptedException {
-        for(int i = 0; i < 10; i++){
-            LOGGER.info("----------info,{}",34);
-            LOGGER.warn("----------warn");
-            LOGGER.error("----------error");
+        for (int i = 0; i < 10000; i++) {
+            LOGGER.error("--[" + i + "]----\n\n----infsdfasdfo,{}", 34);
 
-            Thread.sleep(400);
+            Thread.sleep(100);
         }
 
     }

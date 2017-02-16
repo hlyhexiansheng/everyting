@@ -19,12 +19,21 @@ public class Log4jBootStrap {
 
         for(int i = 0; i < 10000 * 100;i++){
 
-            Thread.sleep(5000);
-            logger.error(i + " log4j hehehehhehefdfdfsfasfasfasdf");
-
+//            Thread.sleep(5000);
+            logger.error(i + " log4j hehehehh\n\n\nehefdfdfsfasfasfasdf");
+            break;
         }
 
         System.out.println(System.currentTimeMillis() - l);
 
+    }
+
+
+    public void triggerCpuHigher(){
+        logger.error("cpu isjifdsjoi ");
+    }
+
+    public void triggerMemHigher(){
+        logger.error("cpu isjifdsjoi ");
     }
 }

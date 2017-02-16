@@ -7,6 +7,9 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by noodles on 17/1/10 下午5:29.
@@ -24,13 +27,29 @@ public class SimpleHttpServer {
     static class MyHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange t) throws IOException {
-            String response = "This is the response";
-            t.sendResponseHeaders(200, response.length());
-            OutputStream os = t.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
 
-            System.exit(0);
+            try {
+
+                final URI requestURI = t.getRequestURI();
+                final String query = requestURI.getQuery();
+
+                Map m = new HashMap();
+
+                java.lang.String response;
+
+                for (int i = 0; i < 1000; i++) {
+                    m.put(i+"", "中文");
+                }
+                response = com.alibaba.fastjson.JSON.toJSONString(m);
+                t.sendResponseHeaders(200, response.getBytes().length);
+                OutputStream os = t.getResponseBody();
+                os.write(response.getBytes());
+                os.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+
         }
     }
 }

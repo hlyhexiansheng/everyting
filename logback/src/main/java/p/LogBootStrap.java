@@ -23,7 +23,7 @@ public class LogBootStrap {
 
             Thread.sleep(100);
 
-            logger.error(" " + i +  " hehehehhehefdfdfsfasfasfasdf");
+            logger.error(" " + i +  " heheh\n\nehh\nehefdfdfsfasfasfasdf");
 
         }
 

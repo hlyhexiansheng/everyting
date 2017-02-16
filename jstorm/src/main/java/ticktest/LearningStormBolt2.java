@@ -21,7 +21,7 @@ public class LearningStormBolt2 extends BaseBasicBolt {
 
 
     public void execute(Tuple input, BasicOutputCollector collector) {
-
+        input.getSourceTask();
         if(isTickTuple(input)){
             System.out.println("learningStormBolt2 system tick....");
             return;

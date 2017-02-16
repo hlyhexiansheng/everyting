@@ -6,7 +6,9 @@ import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseBasicBolt;
+import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
+import backtype.storm.tuple.Values;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
@@ -25,18 +27,19 @@ public class CountBolt extends BaseBasicBolt {
 
     @Override
     public void prepare(Map stormConf, TopologyContext context) {
-        System.out.println("call countBolt......");
+        System.out.println("call countBolt.ThreadName=" + Thread.currentThread().getName());
         map = new HashMap<>();
     }
 
     public void execute(Tuple input, BasicOutputCollector collector) {
 
         if (isTickTuple(input)) {
-            System.out.println(Thread.currentThread().getName() + ":" + map.toString());
+//            System.out.println(Thread.currentThread().getName() + ":" + map.toString());
+//            System.out.println("tick tuple:" + input.getSourceTask());
             return;
         }
 
-
+        System.out.println("taskId=" + input.getSourceTask() + " ,ThreadName=" + Thread.currentThread().getName());
         String test = input.getStringByField("tag");
 
         if (!map.containsKey(test)) {
@@ -44,6 +47,7 @@ public class CountBolt extends BaseBasicBolt {
         }
         final int andIncrement = map.get(test).getAndIncrement();
 
+        collector.emit(new Values(andIncrement));
     }
 
     protected static boolean isTickTuple(Tuple tuple) {
@@ -53,7 +57,7 @@ public class CountBolt extends BaseBasicBolt {
 
 
     public void declareOutputFields(OutputFieldsDeclarer delarer) {
-//        delarer.declare(new Fields("word"));
+        delarer.declare(new Fields("result"));
     }
 
     @Override

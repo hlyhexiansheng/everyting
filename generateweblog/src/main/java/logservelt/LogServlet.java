@@ -20,12 +20,13 @@ import java.util.concurrent.TimeUnit;
 /**
  * Cmreated by noodles on 16/12/5 上午10:50.
  */
-public class LogServlet extends HttpServlet{
+public class LogServlet extends HttpServlet {
 
     public static final Logger logger = LogManager.getLogger(LogServlet.class);
-////public static final Logger logger = Logger.getLogger(LogServlet.class);
+    ////public static final Logger logger = Logger.getLogger(LogServlet.class);
 //    public static final Logger logger = LoggerFactory.getLogger(LogServlet.class);
     private static long logId = 0;
+
     @Override
     public void init() throws ServletException {
 
@@ -33,14 +34,14 @@ public class LogServlet extends HttpServlet{
 
         ConfigReader.instance.loadConfig(resourceAsStream);
 
-        int speed = ConfigReader.instance.getIntValue("speed",100);
+        int speed = ConfigReader.instance.getIntValue("speed", 1000);
 
         ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             public void run() {
-//                logger.error("error log [{}]" ,logId++);
+                logger.error("error log [{}]", logId++);
             }
-        },1,speed, TimeUnit.MILLISECONDS);
+        }, 1, speed, TimeUnit.MILLISECONDS);
 
         super.init();
     }
@@ -61,6 +62,6 @@ public class LogServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doPost(req,resp);
+        this.doPost(req, resp);
     }
 }

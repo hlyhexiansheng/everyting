@@ -1,18 +1,16 @@
-package fieldgrouping;
+package directGrouping;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.topology.TopologyBuilder;
-import backtype.storm.tuple.Fields;
-import backtype.storm.utils.Utils;
 
 import java.util.Map;
 import java.util.Properties;
 
 /**
- * Created by noodles on 17/1/16 上午10:26.
+ * Created by noodles on 2017/2/3 15:35.
  */
-public class FieldGroupingTest {
+public class DirectGroupingTest {
 
     private static Config conf = new Config();
 
@@ -57,11 +55,10 @@ public class FieldGroupingTest {
     public static void setBuilder(TopologyBuilder builder, Map conf) {
         builder.setSpout("spout", new Spout(props), 1);
 
-        builder.setBolt("countBolt", new CountBolt(), 10)
-                .fieldsGrouping("spout", Utils.DEFAULT_STREAM_ID, new Fields("tag"));
+        builder.setBolt("countBolt", new CountBolt(), 1)
+                .shuffleGrouping("spout");
 
-        builder.setBolt("ResultBolt",new ResultBolt(),1)
-                .shuffleGrouping("countBolt");
-
+        builder.setBolt("monitorBolt", new MonitorBolt(), 1)
+                .shuffleGrouping("spout","monitorStream");
     }
 }

@@ -17,18 +17,20 @@ public class WatcherTest {
 
     private static WatchService watchService;
 
+    private static String dir = "/Users/noodles/logs/localproject";
+
     public static void main(String[] args) throws Exception {
 
         try {
-            String dir = "/Users/noodles/Documents/bppe-2.0/workspace/test/testdir";
 
-        testResisterSingle(dir);
+
+            testResisterSingle(dir);
 
 //        testWalkFileTree(dir);
 
 //        testWatchMultiPath(dir,true);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -52,7 +54,7 @@ public class WatcherTest {
                 StandardWatchEventKinds.ENTRY_MODIFY,
                 StandardWatchEventKinds.ENTRY_CREATE,
                 StandardWatchEventKinds.ENTRY_DELETE);
-        keys.put(watchKey,path);
+        keys.put(watchKey, path);
         while (true) {
             final WatchKey key = watchService.take();
             final Path paths = keys.get(key);
@@ -62,7 +64,7 @@ public class WatcherTest {
 
                     String fileName = paths.toAbsolutePath().toString() + "/" + event.context().toString();
 
-                    if(new File(fileName).isDirectory()){
+                    if (new File(fileName).isDirectory()) {
                         System.out.println("directory....");
                         continue;
                     }
@@ -111,7 +113,7 @@ public class WatcherTest {
 
                     String fileName = paths.toAbsolutePath().toString() + "/" + event.context().toString();
                     final File tmpFile = new File(fileName);
-                    if(tmpFile.isDirectory()){
+                    if (tmpFile.isDirectory()) {
                         registerIfNot(fileName);
                         continue;
                     }
@@ -135,9 +137,9 @@ public class WatcherTest {
 
     private static void registerIfNot(String dir) throws IOException {
         final Iterator<Path> iterator = keys.values().iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             final Path next = iterator.next();
-            if(next.toAbsolutePath().toString().equals(dir)){
+            if (next.toAbsolutePath().toString().equals(dir)) {
                 return;
             }
         }

@@ -18,7 +18,7 @@ public class RandomAccessFileTest {
 
 //        randomWrite(randomFileName);
 //
-//        randomRead(randomFileName);
+        randomRead(randomFileName);
 //
 //        mapperWrite(mapperFileName);
 //
@@ -70,6 +70,7 @@ public class RandomAccessFileTest {
         for(int i = 0; i < 1000 * 5000;i++){
             out.get(new byte[100]);
         }
+
 
         channel.close();
         rf.close();

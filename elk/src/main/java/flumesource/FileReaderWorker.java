@@ -1,5 +1,9 @@
 package flumesource;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
@@ -7,9 +11,13 @@ import java.util.concurrent.*;
 /**
  * Created by noodles on 2017/2/18 23:39.
  */
+@Slf4j
 public class FileReaderWorker extends Thread {
 
     private volatile boolean running = true;
+    @Getter
+    @Setter
+    private volatile boolean isFileRolling = false;
 
     private Map<String, TailFile> fileMap = new ConcurrentHashMap<>();
 
@@ -30,7 +38,11 @@ public class FileReaderWorker extends Thread {
             @Override
             public void run() {
                 try {
-                    filePostionManager.sync();
+
+                    fireAllFileEvent();
+
+                    filePostionManager.syncDisk();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -61,10 +73,14 @@ public class FileReaderWorker extends Thread {
     private void doRead(TailFile tailFile) throws IOException {
 
         while (true) {
+            if (isFileRolling) {
+                return;
+            }
             final String line = tailFile.nextLine();
             if (line == null) {
                 break;
             }
+            log.info(line);
             System.out.println(line);
         }
     }
@@ -82,11 +98,8 @@ public class FileReaderWorker extends Thread {
         }
     }
 
-    public void fireReadEvent(String inode) {
-        readEventQueue.offer(inode);
-    }
-
     public void closeAllFile() throws IOException {
+
         final Collection<TailFile> values = fileMap.values();
         for (TailFile file : values) {
             file.close();

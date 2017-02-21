@@ -30,7 +30,7 @@ public class Log4j2BootStrap {
 
     public static void printLong(int size) {
         for (int i = 0; i < size; i++) {
-            LOGGER.error("                      [[[[GG0-{}]]]]]                      mmanager,{}", i);
+            LOGGER.error("                      [[[[BB{}-{}]]]]]                      mmanager,{}", size, i);
         }
     }
 

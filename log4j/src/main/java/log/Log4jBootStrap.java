@@ -2,6 +2,8 @@ package log;
 
 import org.apache.log4j.Logger;
 
+import java.util.Scanner;
+
 /**
  * Created by noodles on 16/11/18 下午11:32.
  */
@@ -15,25 +17,38 @@ public class Log4jBootStrap {
 
     public static void main(String[] args) throws InterruptedException {
 
-        final long l = System.currentTimeMillis();
+//        final long l = System.currentTimeMillis();
+//
+//        for(int i = 0; i < 10000 * 100;i++){
+//
+////            Thread.sleep(5000);
+//            logger.error(i + " log4j hehehehh\n\n\nehefdfdfsfasfasfasdf");
+//            break;
+//        }
+//
+//        System.out.println(System.currentTimeMillis() - l);
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            final String s = scanner.nextLine();
 
-        for(int i = 0; i < 10000 * 100;i++){
-
-//            Thread.sleep(5000);
-            logger.error(i + " log4j hehehehh\n\n\nehefdfdfsfasfasfasdf");
-            break;
+            printLong(Integer.parseInt(s));
         }
 
-        System.out.println(System.currentTimeMillis() - l);
 
     }
 
+    public static void printLong(int size) {
+        for (int i = 0; i < size; i++) {
+            logger.error("                      [[[[HH" + size + "-{" + i + "}]]]]]                      mmanager,{}");
+        }
+    }
 
-    public void triggerCpuHigher(){
+
+    public void triggerCpuHigher() {
         logger.error("cpu isjifdsjoi ");
     }
 
-    public void triggerMemHigher(){
+    public void triggerMemHigher() {
         logger.error("cpu isjifdsjoi ");
     }
 }

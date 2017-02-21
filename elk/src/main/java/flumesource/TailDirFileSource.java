@@ -2,7 +2,6 @@ package flumesource;
 
 import com.google.common.collect.Maps;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.Arrays;
@@ -12,9 +11,8 @@ import java.util.Map;
 /**
  * Created by noodles on 2017/2/18 23:00.
  */
-public class TailDirSource {
+public class TailDirFileSource {
 
-    private String watchDir = "/Users/noodles/logs/localproject";
 
     private String positionFile = "/Users/noodles/data/taildirsource/position.json";
 
@@ -26,13 +24,12 @@ public class TailDirSource {
 
     private FilePostionManager filePostionManager;
 
-    public static void main(String[] args) throws Exception {
-        new TailDirSource().start();
-    }
 
     public void start() throws IOException, InterruptedException {
-
-        this.filePostionManager = new FilePostionManager(positionFile, Arrays.asList(watchDir));
+        String watchDir1 = "/Users/noodles/logs/localproject";
+        String watchDir2 = "/Users/noodles/logs/localproject2";
+        final List<String> watchList = Arrays.asList(watchDir1, watchDir2);
+        this.filePostionManager = new FilePostionManager(positionFile, watchList);
 
         this.fileReaderWorker = new FileReaderWorker(filePostionManager);
 
@@ -42,14 +39,16 @@ public class TailDirSource {
 
         this.fileReaderWorker.fireAllFileEvent();
 
-        final Path path = Paths.get(this.watchDir);
+        for (String dir : watchList) {
+            final Path path = Paths.get(dir);
 
-        final WatchKey watchKey = path.register(watchService,
-                StandardWatchEventKinds.ENTRY_MODIFY,
-                StandardWatchEventKinds.ENTRY_CREATE,
-                StandardWatchEventKinds.ENTRY_DELETE);
+            final WatchKey watchKey = path.register(watchService,
+                    StandardWatchEventKinds.ENTRY_MODIFY,
+                    StandardWatchEventKinds.ENTRY_CREATE,
+                    StandardWatchEventKinds.ENTRY_DELETE);
 
-        keys.put(watchKey, path);
+            keys.put(watchKey, path);
+        }
 
 
         this.fileReaderWorker.start();
@@ -69,20 +68,18 @@ public class TailDirSource {
     }
 
     private void resetTailFiles() throws IOException {
-
+        //1.更新offset
         final List<FilePostionInfo> curPostionInfos = this.fileReaderWorker.getPostionInfo();
-
-
         for (FilePostionInfo info : curPostionInfos) {
             this.filePostionManager.updatePostion(info.getInode(), info.getOffset());
         }
-        this.filePostionManager.sync();
+        this.filePostionManager.syncDisk();
 
+        //2.关闭旧的文件
         this.fileReaderWorker.closeAllFile();
 
+        //3.重新加入文件.
         final List<FilePostionInfo> postionInfos = this.filePostionManager.getPostionInfos();
-
-
         for (FilePostionInfo info : postionInfos) {
             String inode = info.getInode();
             TailFile tailFile = new TailFile(inode, info.getFilename(), info.getOffset());
@@ -97,13 +94,12 @@ public class TailDirSource {
 
                 String fileName = path.toAbsolutePath().toString() + "/" + event.context().toString();
 
-                if (new File(fileName).isDirectory()) {
+                if (FileINodeUtil.isDirectory(fileName)) {
                     continue;
                 }
 
                 if (event.kind().name().equals(StandardWatchEventKinds.ENTRY_MODIFY.name())) {       // 文件更改
                     System.out.println(fileName + "file Modify");
-                    processModify(fileName);
                 } else if (event.kind().name().equals(StandardWatchEventKinds.ENTRY_DELETE.name())) {// 文件删除
                 } else if (event.kind().name().equals(StandardWatchEventKinds.ENTRY_CREATE.name())) {// 文件创建
                     System.out.println(fileName + "file Created");
@@ -114,18 +110,17 @@ public class TailDirSource {
     }
 
     private void processCreate(String fileName) throws IOException {
+        //1.加锁，让work暂时不要再读了 （使用volatile变量当作轻量级锁）
+        this.fileReaderWorker.setFileRolling(true);
 
-        final String inode = FileINodeUtil.getInode(fileName);
-//
-        this.filePostionManager.notifyFileCreate(inode, fileName);
+        //2.触发create事件，主要是刷新文件的位置信息
+        this.filePostionManager.notifyFileCreate();
 
-        resetTailFiles();
+        //3.重置work监控的文件
+        this.resetTailFiles();
 
-        this.fileReaderWorker.fireAllFileEvent();
-    }
+        //4.释放标志位
+        this.fileReaderWorker.setFileRolling(false);
 
-    private void processModify(String fileName) {
-        final String inode = FileINodeUtil.getInode(fileName);
-        this.fileReaderWorker.fireReadEvent(inode);
     }
 }

@@ -4,13 +4,14 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <RollingFile name="RollingFile" filename="/Users/noodles/logs/localproject/log4j2.log" filepattern="/Users/noodles/logs/localproject/log4j2.log.%d{YYYYMMddHHmmss}">
+        <RollingFile name="RollingFile" filename="/Users/noodles/logs/localproject/log4j2.log"
+                     filepattern="/Users/noodles/logs/localproject/log4j2.log.%d{YYYYMMddHHmmss}">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
             <Policies>
                 <!--<SizeBasedTriggeringPolicy size="1 MB"/>-->
-                <SizeBasedTriggeringPolicy size="5 KB"/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
             </Policies>
-            <DefaultRolloverStrategy max="20"/>
+            <DefaultRolloverStrategy max="200"/>
         </RollingFile>
     </appenders>
     <loggers>

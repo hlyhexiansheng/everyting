@@ -17,7 +17,7 @@ public class WatcherTest {
 
     private static WatchService watchService;
 
-    private static String dir = "/Users/noodles/logs/localproject";
+    private static String dir = "/Users/noodles/logs/log";
 
     public static void main(String[] args) throws Exception {
 

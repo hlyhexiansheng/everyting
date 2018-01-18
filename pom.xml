@@ -16,11 +16,8 @@
         <module>trace</module>
         <module>jstorm</module>
         <module>javaAgent</module>
-        <module>logback</module>
         <module>embed-tomcat</module>
         <module>zookeeper</module>
-        <module>log4j</module>
-        <module>log4j2</module>
         <module>kafka</module>
         <module>elasticsearch</module>
         <module>metrics</module>

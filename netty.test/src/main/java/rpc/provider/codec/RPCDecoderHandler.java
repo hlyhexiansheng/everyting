@@ -34,6 +34,8 @@ public class RPCDecoderHandler extends ByteToMessageDecoder{
                 out.add(request);
 
             }
+
+            in.release();
         }
     }
 

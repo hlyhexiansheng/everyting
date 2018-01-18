@@ -12,7 +12,7 @@ public class RandomAccessFileTest {
 
     public static void main(String[] args) throws IOException {
 
-        String randomFileName = "/Users/noodles/Documents/bppe-2.0/workspace/test/randomfiletest.txt";
+        String randomFileName = "/Users/noodles/Documents/code/Documents/globalgrow/infrastructure/elog/trunk/flume-parent/conf/test.conf";
 
         String mapperFileName = "/Users/noodles/Documents/bppe-2.0/workspace/test/mapperfiletest.txt";
 
@@ -23,6 +23,9 @@ public class RandomAccessFileTest {
 //        mapperWrite(mapperFileName);
 //
 //        mapperRead(mapperFileName);
+
+        Thread.interrupted();
+
 
         try {
             trace();
@@ -84,8 +87,8 @@ public class RandomAccessFileTest {
 
         while (true){
 
-            final int read = rf.read(new byte[100]);
-            if(read < 100){
+            final String s = rf.readLine();
+            if(s == null){
                 break;
             }
         }

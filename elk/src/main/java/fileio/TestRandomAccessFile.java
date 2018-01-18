@@ -9,13 +9,13 @@ import java.io.RandomAccessFile;
  */
 public class TestRandomAccessFile {
 
-    public static void main(String[] args) throws IOException {
-        RandomAccessFile randomAccessFile = new RandomAccessFile("/Users/noodles/logs/localproject/log4j2.log", "r");
+    public static void main(String[] args) throws IOException, InterruptedException {
+        RandomAccessFile randomAccessFile = new RandomAccessFile("/Users/noodles/logs/log1/a.log", "r");
         while (true) {
             final String s = randomAccessFile.readLine();
             if(s == null){
-                System.out.println("end...");
-                break;
+                Thread.sleep(1000);
+                continue;
             }
             System.out.println(s);
         }

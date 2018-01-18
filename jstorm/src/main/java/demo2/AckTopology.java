@@ -7,8 +7,6 @@ import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
 import backtype.storm.generated.TopologyAssignException;
 import backtype.storm.topology.TopologyBuilder;
-import backtype.storm.tuple.Fields;
-import backtype.storm.utils.Utils;
 
 import java.util.Map;
 
@@ -22,11 +20,14 @@ public class AckTopology {
     public static void main(String[] args) throws AlreadyAliveException, InvalidTopologyException, TopologyAssignException, InterruptedException {
 
         conf.setNumAckers(1);
+        conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 10);
+        conf.setMessageTimeoutSecs(5);
+        Config.setNumAckers(conf,0);
 
-        if(args != null && args.length > 0 && args[0].equals("remote")){
+        if (args != null && args.length > 0 && args[0].equals("remote")) {
             System.out.println("remote.....");
             setRemoteTopology();
-        }else {
+        } else {
             System.out.println("local......");
             setLocalTopology();
         }
@@ -61,11 +62,10 @@ public class AckTopology {
 
     public static void setBuilder(TopologyBuilder builder, Map conf) {
         builder.setSpout("spout", new AckSpout(), 1);
-        builder.setBolt("ackBolt", new AckBolt(), 2)
-                .fieldsGrouping("spout",Utils.DEFAULT_STREAM_ID,new Fields("word"))
-                .fieldsGrouping("spout",AckTopologyDef.SteamId,new Fields("antherword"));
+        builder.setBolt("ackBolt", new AckBolt(), 1).shuffleGrouping("spout");
 
-        builder.setBolt("ackBolt2",new AckBolt2(),2).fieldsGrouping("spout",AckTopologyDef.SteamId,new Fields("antherword"));
+//        builder.setBolt("ackBolt2", new AckBolt2(), 1)
+//                .shuffleGrouping("ackBolt");
     }
 
 }

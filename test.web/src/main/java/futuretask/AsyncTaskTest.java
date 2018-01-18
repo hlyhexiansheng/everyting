@@ -10,9 +10,9 @@ import java.util.concurrent.Future;
  */
 public class AsyncTaskTest {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
 
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
 
         Future<Object> submit = executorService.submit(new Callable<Object>() {
             @Override
@@ -22,6 +22,7 @@ public class AsyncTaskTest {
             }
         });
 
+        Thread.sleep(100000);
         System.out.println("...");
     }
 }

@@ -35,14 +35,16 @@ public class KakkaPro4 {
         Producer<String, String> producer = new KafkaProducer<>(props);
 
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("/tmp/fieldGroup.log"));
+//        BufferedReader bufferedReader = new BufferedReader(new FileReader("/tmp/fieldGroup.log"));
 
         String line = null;
 
+        Scanner scanner = new Scanner(System.in);
+        while (true){
 
-        while (!Strings.isNullOrEmpty(line = bufferedReader.readLine())){
+            line = scanner.nextLine();
 
-            final ProducerRecord<String, String> record = new ProducerRecord<>("fieldGrouping", "eventkey", line);
+            final ProducerRecord<String, String> record = new ProducerRecord<>("dump-test", "eventkey", line);
 
             final Future<RecordMetadata> future = producer.send(record);
 
@@ -55,8 +57,8 @@ public class KakkaPro4 {
 
     private static void initProperty() {
         props = new Properties();
-        props.put("bootstrap.servers", "10.40.6.151:9092");
-        props.put("acks", "all");
+        props.put("bootstrap.servers", "10.40.6.152:9092");
+        props.put("acks", "1");
         props.put("retries", 0);
         props.put("batch.size", 16384);
         props.put("linger.ms", 1);

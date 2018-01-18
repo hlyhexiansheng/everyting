@@ -31,12 +31,12 @@ public class KafkaConsumerDemo4 {
 
         private void autoConsumer() {
             KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(this.properties);
-            consumer.subscribe(Arrays.asList("SearchSystem_Out"));
+            consumer.subscribe(Arrays.asList("elog-portal"));
             while (true) {
-                ConsumerRecords<String, byte[]> records = consumer.poll(1000);
+                ConsumerRecords<String, byte[]> records = consumer.poll(5000);
+                System.out.println("-----------" + records.count());
                 for (ConsumerRecord<String, byte[]> record : records){
-
-                    System.out.println(new String(record.value()));;
+                    System.out.println("topic=" + record.topic() + "," + new String(record.value()));;
 
                 }
             }
@@ -46,7 +46,7 @@ public class KafkaConsumerDemo4 {
 
     public static void main(String[] args) {
 
-        final Properties props2 = initProps("test2");
+        final Properties props2 = initProps("test44");
 
         KafkaRunner kafkaRunner2 = new KafkaRunner(props2);
 
@@ -65,7 +65,7 @@ public class KafkaConsumerDemo4 {
         props.put("session.timeout.ms", "30000");
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.ByteArrayDeserializer");////
-        props.put("auto.offset.reset","earliest");
+        props.put("auto.offset.reset", "earliest");
         return props;
     }
 

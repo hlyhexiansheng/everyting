@@ -14,9 +14,9 @@ import java.util.UUID;
 public class HBaseTest {
 
     public static void main(String[] args) throws IOException {
-//        getTest();
+        getTest();
 //        putTest();
-        deleteTest();
+//        deleteTest();
     }
 
     public static void putTest() throws IOException {

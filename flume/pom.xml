@@ -29,6 +29,13 @@
             <artifactId>flume-ng-core</artifactId>
             <version>1.7.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.flume/flume-ng-node -->
+        <dependency>
+            <groupId>org.apache.flume</groupId>
+            <artifactId>flume-ng-node</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+
     </dependencies>
 
 

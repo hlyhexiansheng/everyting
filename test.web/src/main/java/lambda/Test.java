@@ -1,7 +1,9 @@
 package lambda;
 
-import java.util.ArrayList;
+import com.alibaba.fastjson.JSON;
+
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 /**
@@ -11,9 +13,23 @@ public class Test {
 
     public static void main(String[] args) throws InterruptedException {
 
-        System.out.println("line-13".hashCode() % 10);
-        System.out.println("line-6".hashCode() % 10);
+        EBean bean = new EBean();
+        bean.age = 1;
+        bean.userName = "hleiyu";
+        bean.password = "fasdjoi";
 
+        final String s = JSON.toJSONString(bean);
+
+        System.out.println(s);
     }
 
+}
+
+class EBean {
+
+    public String userName;
+
+    public String password;
+
+    public int age;
 }

@@ -38,7 +38,7 @@ public class KakkaPro3 {
                 continue;
             }
 
-            final ProducerRecord<String, String> record = new ProducerRecord<>("fieldGrouping", "eventkey", tag);
+            final ProducerRecord<String, String> record = new ProducerRecord<>("abcd", "eventkey", tag);
 
             final Future<RecordMetadata> future = producer.send(record);
 

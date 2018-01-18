@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+  <property>
+    <name>dfs.name.dir</name>
+    <value>file:///data/name</value>
+  </property>
+  <property>
+    <name>dfs.data.dir</name>
+    <value>file:///data/data</value>
+  </property>
+  <property>
+    <name>dfs.replication</name>
+    <value>2</value>
+  </property>
+  <property>
+    <name>dfs.nameservices</name>
+    <value>cluster1</value>
+    <description>HDFS namenode的逻辑名称，也就是namenode HA</description>
+  </property>
+  <property>
+    <name>dfs.ha.namenodes.cluster1</name>
+    <value>ns1,ns2</value>
+    <description>nameservices对应的namenode逻辑名</description>
+  </property>
+  <property>
+    <name>dfs.namenode.rpc-address.cluster1.ns1</name>
+    <value>10.40.2.27:9000</value>
+    <description>指定namenode(ns1)的rpc地址和端口</description>
+  </property>
+  <property>
+    <name>dfs.namenode.http-address.cluster1.ns1</name>
+    <value>10.40.2.27:50070</value>
+    <description>指定namenode(ns1)的web地址和端口</description>
+  </property>
+  <property>
+    <name>dfs.namenode.rpc-address.cluster1.ns2</name>
+    <value>10.40.2.55:9000</value>
+    <description>指定namenode(ns2)的rpc地址和端口</description>
+  </property>
+  <property>
+    <name>dfs.namenode.http-address.cluster1.ns2</name>
+    <value>10.40.2.55:50070</value>
+    <description>指定namenode(ns2)的web地址和端口</description>
+  </property>
+  <property>
+    <name>dfs.namenode.shared.edits.dir</name>
+    <value>qjournal://10.40.2.27:8485;10.40.2.55:8485;10.40.2.66:8485/cluster1 </value>
+    <description>这是NameN  NameNode 读取这些 edit log，并作用在内存中的目录树中</description>
+  </property>
+  <property>
+    <name>dfs.journalnode.edits.dir</name>
+    <value>/data/journal</value>
+    <description>ournalNode 所在节点上的一个目录，用于存放 editlog 和其他状态信息。</description>
+  </property>
+  <property>
+    <name>dfs.ha.automatic-failover.enabled</name>
+    <value>true</value>
+    <description>启动自，用来监控NN的状态信息。每个运行NN的节点必须要运行一个zkfc</description>
+  </property>
+  <property>
+    <name>dfs.client.failover.proxy.provider.cluster1</name>
+    <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+    <description>配置HDFS客户端连接到Active NameNode的一个java类</description>
+  </property>
+  <property>
+    <name>dfs.ha.fencing.methods</name>
+    <value>sshfence</value>
+    <description>解决HA集致状态）。在 HDFS HA中，JournalNode</description>
+  </property>
+  <property>
+    <name>dfs.ha.fencing.ssh.private-key-files</name>
+    <value>/root/.ssh/id_rsa</value>
+    <description>ssh通讯使用的密钥</description>
+  </property>
+  <property>
+    <name>dfs.ha.fencing.ssh.connect-timeout</name>
+    <value>30000</value>
+    <description>连接超时时间</description>
+  </property>
+</configuration>

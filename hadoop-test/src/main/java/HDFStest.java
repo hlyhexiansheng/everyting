@@ -20,7 +20,7 @@ public class HDFStest {
 
     public static void main(String[] args) throws IOException {
         list();
-        createDir("/input3");
+//        createDir("/input3");
     }
 
     private static void createDir(String dir) throws IOException {
@@ -40,7 +40,7 @@ public class HDFStest {
         Configuration conf = new Configuration();
         FileSystem fs = FileSystem.get(URI.create(uri), conf);
 
-        Path f = new Path("/user/hadoop/input");
+        Path f = new Path("/user/root");
         FileStatus[] status = fs.listStatus(f);
 
         for (FileStatus statu : status) {
